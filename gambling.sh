@@ -1,5 +1,6 @@
 #!/bin/bash -x
 echo "-----WELCOME TO GAMBLING SIMULATION---------"
+declare -A month
 STAKE_FOR_DAY=100
 BET_PER_GAME=1
 LOSE=1
@@ -31,9 +32,10 @@ function checkWon(){
 }
 
 function wonORlost(){
-	for((i=1;i<=$DAYS_TO_PLAY;i++))
+	for ((i=1;i<=20;i++))
 	do
    totalcash=$(($totalcash+$(checkWon)))
+	month[$i]=$totalcash
 	done
    if [ $totalcash -gt $WONRESIGN ]
 	then
@@ -44,3 +46,4 @@ function wonORlost(){
 }
 checkWon
 wonORlost
+echo ${month[@]}
