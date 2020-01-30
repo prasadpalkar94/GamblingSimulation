@@ -44,6 +44,18 @@ function wonORlost(){
 		echo Total cash lost:$totalcash
 	fi
 }
+
+function dayCheck(){
+for daycheck in ${!month[@]}
+do
+echo $daycheck ${month[$daycheck]}
+done
+}
+
 checkWon
 wonORlost
 echo ${month[@]}
+
+echo "UnluckyDay::$(dayCheck| sort -k2 -rn | tail -1)"
+echo "LuckyDay::$(dayCheck| sort -k2 -rn | head -1)"
+
