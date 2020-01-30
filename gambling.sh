@@ -7,31 +7,25 @@ WIN=0
 cash=$STAKE_FOR_DAY
 
 function resignpercent() {
-echo "$(($cash*50/$STAKE_FOR_DAY))"
+	echo "$(($cash*50/$STAKE_FOR_DAY))"
 }
+
 val="$(resignpercent)"
+WONRESIGN=$(($STAKE_FOR_DAY+$val))
+LOSERESIGN=$(($STAKE_FOR_DAY-$val))
 
 function checkWon(){
-totalval=0
-check=$((RANDOM%2))
-if [ $check -eq $WIN ]
-then
-echo "WON"
-wonresign=$(($STAKE_FOR_DAY+$val))
-while [ $cash -ne $wonresign ]
-do
-cash=$(($cash+$BET_PER_GAME))
-totalval=$(($totalval+$cash))
-done
-else
-echo "LOST"
-loseresign=$(($STAKE_FOR_DAY-$val))
-while [ $cash -ne $loseresign ]
-do
-cash=$(($cash-$BET_PER_GAME))
-totalval=$(($totalval+$cash))
-done
-fi        
+	totalamount=0
+	check=$((RANDOM%2))
+	while [[ $cash -ne $WONRESIGN  && $cash -ne $LOSERESIGN ]]
+	do
+		if [ $check -eq $WIN ]
+		then
+			cash=$(($cash+$BET_PER_GAME))	
+	else
+			cash=$(($cash-$BET_PER_GAME))
+		fi        
+	done
 }
 checkWon
 
