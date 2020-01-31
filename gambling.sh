@@ -52,6 +52,18 @@ echo $daycheck ${month[$daycheck]}
 done
 }
 
+function checkNextMonth(){
+y=1
+n=0
+read -p "Enter choice between 1 or 0" choice
+if [ $choice -eq 1 ]
+then
+checkWon
+else
+echo "Game Over"
+fi 
+}
+
 checkWon
 wonORlost
 echo ${month[@]}
@@ -59,3 +71,4 @@ echo ${month[@]}
 echo "UnluckyDay::$(dayCheck| sort -k2 -rn | tail -1)"
 echo "LuckyDay::$(dayCheck| sort -k2 -rn | head -1)"
 
+checkNextMonth
