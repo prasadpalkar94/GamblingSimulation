@@ -48,7 +48,7 @@ function wonORlost(){
 function dayCheck(){
 for daycheck in ${!month[@]}
 do
-echo $daycheck ${month[$daycheck]}
+	echo $daycheck ${month[$daycheck]}
 done
 }
 
@@ -58,9 +58,9 @@ n=0
 read -p "Enter choice between 1 or 0" choice
 if [ $choice -eq 1 ]
 then
-checkWon
+	checkWon
 else
-echo "Game Over"
+	echo "Game Over"
 fi 
 }
 
